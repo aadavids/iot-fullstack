@@ -9,10 +9,10 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+IotHeartbeat.Repo.delete_all(IotHeartbeat.Heartbeats.Heartbeat, [])
 
 IotHeartbeat.Repo.delete_all(IotHeartbeat.Sensors.Sensor, [])
 
-IotHeartbeat.Repo.delete_all(IotHeartbeat.Heartbeats.Heartbeat, [])
 
 sensor_a = "de:ad:be:ef:de:ad"
 sensor_b = "aa:aa:aa:aa:aa:aa"
