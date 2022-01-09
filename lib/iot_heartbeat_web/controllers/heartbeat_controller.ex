@@ -16,9 +16,7 @@ defmodule IotHeartbeatWeb.HeartbeatController do
       # TODO: broadcast pubsub message
 
       conn
-      |> put_status(:created)
-      |> put_resp_header("location", Routes.heartbeat_path(conn, :show, heartbeat))
-      |> render("show.json", heartbeat: heartbeat)
+      |> send_resp(201, "")
     end
   end
 

@@ -4,6 +4,7 @@ defmodule IotHeartbeatWeb.HeartbeatLive do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, heartbeats: Heartbeats.list_heartbeats(), sensors: Sensors.list_sensors())}
+    {:ok,
+     assign(socket, heartbeats: Heartbeats.list_heartbeats(), sensors: Sensors.list_sensors())}
   end
 end

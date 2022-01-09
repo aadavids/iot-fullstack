@@ -55,7 +55,9 @@ defmodule IotHeartbeat.Sensors do
         where: d.serial == ^serial
       )
 
-    query |> Repo.one() |> case do
+    query
+    |> Repo.one()
+    |> case do
       nil -> {:err, :not_found}
       sensor -> {:ok, sensor}
     end

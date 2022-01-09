@@ -46,7 +46,10 @@ defmodule IotHeartbeatWeb.HeartbeatControllerTest do
   describe "update heartbeat" do
     setup [:create_heartbeat]
 
-    test "renders heartbeat when data is valid", %{conn: conn, heartbeat: %Heartbeat{id: id} = heartbeat} do
+    test "renders heartbeat when data is valid", %{
+      conn: conn,
+      heartbeat: %Heartbeat{id: id} = heartbeat
+    } do
       conn = put(conn, Routes.heartbeat_path(conn, :update, heartbeat), heartbeat: @update_attrs)
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
 

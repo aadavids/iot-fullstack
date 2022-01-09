@@ -22,11 +22,32 @@ IotHeartbeat.Repo.insert!(%IotHeartbeat.Sensors.Sensor{serial: sensor_a})
 IotHeartbeat.Repo.insert!(%IotHeartbeat.Sensors.Sensor{serial: sensor_b})
 IotHeartbeat.Repo.insert!(%IotHeartbeat.Sensors.Sensor{serial: sensor_c})
 
-IotHeartbeat.Repo.insert!(%IotHeartbeat.Heartbeats.Heartbeat{sensor_value: 1, sensor_serial: sensor_a})
-IotHeartbeat.Repo.insert!(%IotHeartbeat.Heartbeats.Heartbeat{sensor_value: 2, sensor_serial: sensor_a})
-IotHeartbeat.Repo.insert!(%IotHeartbeat.Heartbeats.Heartbeat{sensor_value: 3, sensor_serial: sensor_a})
-IotHeartbeat.Repo.insert!(%IotHeartbeat.Heartbeats.Heartbeat{sensor_value: 4, sensor_serial: sensor_a})
+IotHeartbeat.Repo.insert!(%IotHeartbeat.Heartbeats.Heartbeat{
+  sensor_value: 1,
+  sensor_serial: sensor_a
+})
 
-IotHeartbeat.Repo.insert!(%IotHeartbeat.Heartbeats.Heartbeat{sensor_value: 1, sensor_serial: sensor_b})
+IotHeartbeat.Repo.insert!(%IotHeartbeat.Heartbeats.Heartbeat{
+  sensor_value: 2,
+  sensor_serial: sensor_a
+})
 
-IotHeartbeat.Repo.insert!(%IotHeartbeat.Heartbeats.Heartbeat{sensor_value: 1, sensor_serial: sensor_c})
+IotHeartbeat.Repo.insert!(%IotHeartbeat.Heartbeats.Heartbeat{
+  sensor_value: 3,
+  sensor_serial: sensor_a
+})
+
+IotHeartbeat.Repo.insert!(%IotHeartbeat.Heartbeats.Heartbeat{
+  sensor_value: 4,
+  sensor_serial: sensor_a
+})
+
+IotHeartbeat.Repo.insert!(%IotHeartbeat.Heartbeats.Heartbeat{
+  sensor_value: 1,
+  sensor_serial: sensor_b
+})
+
+IotHeartbeat.Repo.insert!(%IotHeartbeat.Heartbeats.Heartbeat{
+  sensor_value: 1,
+  sensor_serial: sensor_c
+})

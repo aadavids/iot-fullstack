@@ -4,7 +4,7 @@ defmodule IotHeartbeat.Sensors.Sensor do
 
   schema "sensors" do
     field :serial, :string
-    has_many :heartbeats, IotHeartbeat.Heartbeats.Heartbeat, [foreign_key: :serial]
+    has_many :heartbeats, IotHeartbeat.Heartbeats.Heartbeat, foreign_key: :serial
 
     timestamps()
   end

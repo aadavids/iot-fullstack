@@ -49,14 +49,8 @@ defmodule IotHeartbeat.Heartbeats do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_heartbeat(%{serial: serial, value: value}) do
-    sensor = IotHeartbeat.Sensors.get_sensor_by_serial(serial)
-
-    attrs = %{sensor_id: sensor.id, value: value}
-
-    %Heartbeat{}
-    |> Heartbeat.changeset(attrs)
-    |> Repo.insert()
+  def create_heartbeat(attrs) do
+    %Heartbeat{} |> Heartbeat.changeset(attrs) |> Repo.insert()
   end
 
   @doc """

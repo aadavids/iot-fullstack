@@ -35,7 +35,9 @@ defmodule IotHeartbeat.HeartbeatsTest do
       heartbeat = heartbeat_fixture()
       update_attrs = %{sensor_value: 43}
 
-      assert {:ok, %Heartbeat{} = heartbeat} = Heartbeats.update_heartbeat(heartbeat, update_attrs)
+      assert {:ok, %Heartbeat{} = heartbeat} =
+               Heartbeats.update_heartbeat(heartbeat, update_attrs)
+
       assert heartbeat.sensor_value == 43
     end
 

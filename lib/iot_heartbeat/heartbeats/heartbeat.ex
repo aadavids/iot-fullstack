@@ -4,7 +4,11 @@ defmodule IotHeartbeat.Heartbeats.Heartbeat do
 
   schema "heartbeats" do
     field :sensor_value, :integer
-    belongs_to :sensor, IotHeartbeat.Sensors.Sensor, [foreign_key: :sensor_serial, type: :string, references: :serial]
+
+    belongs_to :sensor, IotHeartbeat.Sensors.Sensor,
+      foreign_key: :sensor_serial,
+      type: :string,
+      references: :serial
 
     timestamps()
   end
@@ -12,7 +16,7 @@ defmodule IotHeartbeat.Heartbeats.Heartbeat do
   @doc false
   def changeset(heartbeat, attrs) do
     heartbeat
-    |> cast(attrs, [:sensor_value])
+    |> cast(attrs, [:sensor_value, :sensor_serial])
     |> validate_required([:sensor_value, :sensor_serial])
   end
 end
