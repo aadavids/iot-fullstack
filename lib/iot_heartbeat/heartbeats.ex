@@ -22,6 +22,15 @@ defmodule IotHeartbeat.Heartbeats do
   end
 
   @doc """
+  List heartbeats for LiveView.
+  """
+  def live_heartbeats do
+    query = from h in Heartbeat, order_by: [desc: h.inserted_at]
+
+    Repo.all(query)
+  end
+
+  @doc """
   Gets a single heartbeat.
 
   Raises `Ecto.NoResultsError` if the Heartbeat does not exist.
