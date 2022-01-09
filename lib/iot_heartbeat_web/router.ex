@@ -17,13 +17,15 @@ defmodule IotHeartbeatWeb.Router do
   scope "/", IotHeartbeatWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    live "/", HeartbeatLive
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", IotHeartbeatWeb do
-  #   pipe_through :api
-  # end
+  # Device API
+  scope "/api", IotHeartbeatWeb do
+    pipe_through :api
+
+    resources "/heartbeats", HeartbeatController, only: [:create]
+  end
 
   # Enables LiveDashboard only for development
   #

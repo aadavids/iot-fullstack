@@ -1,0 +1,28 @@
+Hello from Sensor heartbeat page!
+
+<table>
+    <thead>
+        <tr>
+            <th>Sensor Serial </th>
+            <th>Sensor Value </th>
+            <th>Heartbeat Time </th>
+        </tr>
+    </thead>
+
+    <%= for heartbeat <- @heartbeats do %>
+        <tr>
+            <td>
+                <%= heartbeat.sensor_serial %>
+            </td>
+
+            <td>
+                <%= heartbeat.sensor_value %>
+            </td>
+
+            <td>
+                <%= heartbeat.inserted_at %>
+            </td>
+        </tr>
+    <% end %>
+
+</table>
