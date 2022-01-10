@@ -59,7 +59,10 @@ defmodule IotHeartbeat.Heartbeats do
 
   """
   def create_heartbeat(attrs) do
-    %Heartbeat{} |> Heartbeat.changeset(attrs) |> Repo.insert()
+    %Heartbeat{}
+    |> Heartbeat.changeset(attrs)
+    |> Repo.insert()
+    |> broadcast_change([:heartbeat, :new])
   end
 
   @doc """
@@ -107,5 +110,17 @@ defmodule IotHeartbeat.Heartbeats do
   """
   def change_heartbeat(%Heartbeat{} = heartbeat, attrs \\ %{}) do
     Heartbeat.changeset(heartbeat, attrs)
+  end
+
+  @topic inspect(__MODULE__)
+
+  def subscribe do
+    Phoenix.PubSub.subscribe(IotHeartbeat.PubSub, @topic)
+  end
+
+  defp broadcast_change({:ok, result}, event) do
+    Phoenix.PubSub.broadcast(IotHeartbeat.PubSub, @topic, {__MODULE__, event, result})
+
+    {:ok, result}
   end
 end
