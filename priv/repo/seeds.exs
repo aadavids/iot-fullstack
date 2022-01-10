@@ -13,7 +13,6 @@ IotHeartbeat.Repo.delete_all(IotHeartbeat.Heartbeats.Heartbeat, [])
 
 IotHeartbeat.Repo.delete_all(IotHeartbeat.Sensors.Sensor, [])
 
-
 sensor_a = "de:ad:be:ef:de:ad"
 sensor_b = "aa:aa:aa:aa:aa:aa"
 sensor_c = "01:02:03:04:05:06"
