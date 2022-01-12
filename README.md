@@ -2,10 +2,11 @@
 
 To start the heartbeat server:
 
-  * Install dependencies with `mix deps.get`
+  * Ensure Elixir and Erlang are installed. I used Elixir 1.12.3 and Erlang/OTP 24.
+  * Install hex: `mix local.hex` and Phoenix: `mix archive.install hex phx_new`
+  * Install heartbeat server dependencies with `mix deps.get`
   * Bring up postgres database with `docker compose up -d`
-  * Create and migrate your database with `mix ecto.setup`
-  * Seed database with `mix run priv/repo/seeds.exs`
+  * Create, migrate, and seed the database with `mix ecto.setup`
   * Start Phoenix endpoint with `mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
