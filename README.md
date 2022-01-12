@@ -6,7 +6,7 @@ To start the heartbeat server:
   * Install hex: `mix local.hex` and Phoenix: `mix archive.install hex phx_new`
   * Install heartbeat server dependencies with `mix deps.get`
   * Bring up postgres database with `docker compose up -d`
-  * Create, migrate, and seed the database with `mix ecto.setup`
+  * Create, migrate, and seed the database with `mix ecto.setup`. The database can be reset with `mix ecto.reset`.
   * Start Phoenix endpoint with `mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
