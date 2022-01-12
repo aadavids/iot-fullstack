@@ -34,3 +34,7 @@ npm-debug.log
 
 # test database files
 /priv/postgres/
+
+# test script files
+test_script
+test_script.o
