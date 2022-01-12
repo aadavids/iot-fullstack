@@ -21,7 +21,7 @@ defmodule IotHeartbeatWeb.Router do
   end
 
   # Device API
-  scope "/api", IotHeartbeatWeb do
+  scope "/api/v1", IotHeartbeatWeb do
     pipe_through :api
 
     resources "/heartbeats", HeartbeatController, only: [:create, :show, :index]
