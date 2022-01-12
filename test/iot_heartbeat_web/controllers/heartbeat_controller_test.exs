@@ -20,6 +20,7 @@ defmodule IotHeartbeatWeb.HeartbeatControllerTest do
 
       expected_value = create_attrs.sensor_value
       expected_serial = create_attrs.sensor_serial
+
       assert %{
                "id" => ^id,
                "sensor_value" => expected_value,
