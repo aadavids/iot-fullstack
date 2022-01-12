@@ -7,55 +7,38 @@ defmodule IotHeartbeat.HeartbeatsTest do
     alias IotHeartbeat.Heartbeats.Heartbeat
 
     import IotHeartbeat.HeartbeatsFixtures
+    import IotHeartbeat.SensorsFixtures
 
     @invalid_attrs %{sensor_value: nil}
 
     test "list_heartbeats/0 returns all heartbeats" do
-      heartbeat = heartbeat_fixture()
+      sensor = sensor_fixture()
+      heartbeat = heartbeat_fixture(%{sensor_serial: sensor.serial})
       assert Heartbeats.list_heartbeats() == [heartbeat]
     end
 
     test "get_heartbeat!/1 returns the heartbeat with given id" do
-      heartbeat = heartbeat_fixture()
+      sensor = sensor_fixture()
+      heartbeat = heartbeat_fixture(%{sensor_serial: sensor.serial})
       assert Heartbeats.get_heartbeat!(heartbeat.id) == heartbeat
     end
 
-    test "create_heartbeat/1 with valid data creates a heartbeat" do
-      valid_attrs = %{sensor_value: 42}
+    test "create_heartbeat/1 with valid data creates a heartbeat and broadcasts a change" do
+      # subscribe to heartbeat updates
+      IotHeartbeat.Heartbeats.subscribe()
+
+      sensor = sensor_fixture()
+      valid_attrs = %{sensor_value: 42, sensor_serial: sensor.serial}
 
       assert {:ok, %Heartbeat{} = heartbeat} = Heartbeats.create_heartbeat(valid_attrs)
       assert heartbeat.sensor_value == 42
+
+      # assert that we receive a message when a new heartbeat is added
+      assert_received({Heartbeats, [:heartbeat, :new], _})
     end
 
     test "create_heartbeat/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Heartbeats.create_heartbeat(@invalid_attrs)
-    end
-
-    test "update_heartbeat/2 with valid data updates the heartbeat" do
-      heartbeat = heartbeat_fixture()
-      update_attrs = %{sensor_value: 43}
-
-      assert {:ok, %Heartbeat{} = heartbeat} =
-               Heartbeats.update_heartbeat(heartbeat, update_attrs)
-
-      assert heartbeat.sensor_value == 43
-    end
-
-    test "update_heartbeat/2 with invalid data returns error changeset" do
-      heartbeat = heartbeat_fixture()
-      assert {:error, %Ecto.Changeset{}} = Heartbeats.update_heartbeat(heartbeat, @invalid_attrs)
-      assert heartbeat == Heartbeats.get_heartbeat!(heartbeat.id)
-    end
-
-    test "delete_heartbeat/1 deletes the heartbeat" do
-      heartbeat = heartbeat_fixture()
-      assert {:ok, %Heartbeat{}} = Heartbeats.delete_heartbeat(heartbeat)
-      assert_raise Ecto.NoResultsError, fn -> Heartbeats.get_heartbeat!(heartbeat.id) end
-    end
-
-    test "change_heartbeat/1 returns a heartbeat changeset" do
-      heartbeat = heartbeat_fixture()
-      assert %Ecto.Changeset{} = Heartbeats.change_heartbeat(heartbeat)
     end
   end
 end

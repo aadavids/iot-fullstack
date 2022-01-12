@@ -24,7 +24,7 @@ defmodule IotHeartbeatWeb.Router do
   scope "/api", IotHeartbeatWeb do
     pipe_through :api
 
-    resources "/heartbeats", HeartbeatController, only: [:create]
+    resources "/heartbeats", HeartbeatController, only: [:create, :show, :index]
   end
 
   # Enables LiveDashboard only for development

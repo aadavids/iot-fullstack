@@ -13,7 +13,8 @@ defmodule IotHeartbeatWeb.HeartbeatView do
   def render("heartbeat.json", %{heartbeat: heartbeat}) do
     %{
       id: heartbeat.id,
-      sensor_value: heartbeat.sensor_value
+      sensor_value: heartbeat.sensor_value,
+      sensor_serial: heartbeat.sensor_serial
     }
   end
 end

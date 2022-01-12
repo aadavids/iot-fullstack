@@ -2,6 +2,7 @@ defmodule IotHeartbeat.Heartbeats do
   @moduledoc """
   The Heartbeats context.
   """
+  @topic inspect(__MODULE__)
 
   import Ecto.Query, warn: false
   alias IotHeartbeat.Repo
@@ -112,8 +113,6 @@ defmodule IotHeartbeat.Heartbeats do
     Heartbeat.changeset(heartbeat, attrs)
   end
 
-  @topic inspect(__MODULE__)
-
   def subscribe do
     Phoenix.PubSub.subscribe(IotHeartbeat.PubSub, @topic)
   end
@@ -122,5 +121,10 @@ defmodule IotHeartbeat.Heartbeats do
     Phoenix.PubSub.broadcast(IotHeartbeat.PubSub, @topic, {__MODULE__, event, result})
 
     {:ok, result}
+  end
+
+  # don't broadcast invalid change
+  defp broadcast_change({:error, err}, event) do
+    {:error, err}
   end
 end
