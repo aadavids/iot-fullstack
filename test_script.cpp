@@ -21,6 +21,7 @@ int main(void) {
 
         /*
         * Sends 10 heartbeats for each sensor, alternating each second.
+        * Sensor value increments by 1 for the first sensor, and by 2 for the second sensor.
         */
         for(int i = 0; i < 10; i++) {
             snprintf(post_fields, 100, "{\"heartbeat\":{\"sensor_value\":%d,\"sensor_serial\":\"ab:cd:ef:01:23:45\"}}", i);
