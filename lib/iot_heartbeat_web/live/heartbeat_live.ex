@@ -11,6 +11,12 @@ defmodule IotHeartbeatWeb.HeartbeatLive do
     {:ok, fetch(socket)}
   end
 
+  @doc """
+  Handle message indicating that a new heartbeat has arrived.
+  On arrival, pull back the list of heartbeats from the database, and
+  update the view. When a phoenix liveview is updated, it is automatically
+  re-rendered and updates are pushed to the client.
+  """
   def handle_info({Heartbeats, [:heartbeat, :new], _}, socket) do
     {:noreply, fetch(socket)}
   end

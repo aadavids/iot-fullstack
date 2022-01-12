@@ -113,10 +113,20 @@ defmodule IotHeartbeat.Heartbeats do
     Heartbeat.changeset(heartbeat, attrs)
   end
 
+  @doc """
+  Calling this function will allow a process to subscribe to new heartbeasts.maybe_improper_list(
+
+  A process that subscribes here will receive a message when a new heartbeat is received.
+
+  The message for a new heartbeat will be the following tuple: {Heartbeats, [:heartbeat, :new], changeset}.
+  """
   def subscribe do
     Phoenix.PubSub.subscribe(IotHeartbeat.PubSub, @topic)
   end
 
+  @doc """
+  Broadcast message to subscribers when a new heartbeat arrives.
+  """
   defp broadcast_change({:ok, result}, event) do
     Phoenix.PubSub.broadcast(IotHeartbeat.PubSub, @topic, {__MODULE__, event, result})
 
