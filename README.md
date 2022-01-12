@@ -15,3 +15,5 @@ To run the test script:
 
   * Build test script with `make`
   * Run test script with `./test_script`
+
+Unit tests can be run with `mix test`.
